@@ -1,4 +1,4 @@
-name: "Dependabot Automerge"
+name: "Auto approve and merge Pull Requests"
 on:
   pull_request_target
 jobs:
@@ -9,6 +9,7 @@ jobs:
       - name: automerge
         uses: actions/github-script@v3.1
         with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
           script: |
             await github.pulls.createReview({
               owner: context.repo.owner,
@@ -21,4 +22,3 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.issue.number,
             })
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
