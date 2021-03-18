@@ -1,7 +1,7 @@
 name: "Auto approve and merge Pull Requests"
 on:
-  check_suite:
-    types: [completed]
+  schedule:
+    - cron: '*/5 * * * *'
 jobs:
   worker:
     runs-on: ubuntu-latest
