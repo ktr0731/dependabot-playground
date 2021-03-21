@@ -30,9 +30,5 @@ jobs:
     - name: Test
       run: go test -p 1 -coverpkg ./... -covermode atomic -coverprofile coverage.txt ./...
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
-      if: matrix.os == 'ubuntu-latest'
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./coverage.txt
+    - name: Sleep
+      run: sleep 30
