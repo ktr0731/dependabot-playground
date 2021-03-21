@@ -9,7 +9,7 @@ jobs:
       - name: automerge
         uses: actions/github-script@v3.1
         with:
-          github-token: "${{ secrets.GH_TOKEN }}"
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
           script: |
             await github.pulls.createReview({
               owner: context.repo.owner,
@@ -18,16 +18,9 @@ jobs:
               event: 'APPROVE'
             })
 
-            const res = await github.graphql(`query {
-              repository(owner: "${context.repo.owner}", name: "${context.repo.repo}") {
-                pullRequest(number: ${context.issue.number}) {
-                  id
-                }
-              }
-            }`)
-
-            await github.graphql(`mutation {
-              enablePullRequestAutoMerge(input: { pullRequestId: "${res.repository.pullRequest.id}" }) {
-                clientMutationId
-              }
-            }`)
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "@dependabot merge"
+            })
