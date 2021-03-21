@@ -1,11 +1,7 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/pkg/errors"
+	_ "github.com/ktr0731/go-fuzzyfinder"
 )
 
-func main() {
-	fmt.Println(errors.New("err"))
-}
+func main() {}
