@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "github.com/ktr0731/go-fuzzyfinder"
+	_ "github.com/ktr0731/apigen"
 )
 
 func main() {}
